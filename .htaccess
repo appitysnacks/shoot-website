@@ -1,0 +1,22 @@
+ErrorDocument 404 /error.html
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/css application/x-javascript text/x-component text/html text/plain text/xml application/javascript
+  <IfModule mod_setenvif.c>
+	BrowserMatch ^Mozilla/4 gzip-only-text/html
+	BrowserMatch ^Mozilla/4\.0[678] no-gzip
+	BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+  </IfModule>
+</IfModule>
+
+RewriteEngine On
+RewriteCond %{ENV:REDIRECT_STATUS} !200
+RewriteRule ^(\w+)\.html$ /$1 [R=301]
+
+RewriteCond %{HTTP_HOST} ^54\.164\.142\.215$
+RewriteRule ^(.*)$ http://getshootapp.com/$1 [L,R=301]
+
+RewriteRule ^(\w+)/?$ /$1.html
+
+RewriteCond %{HTTP_HOST} ^sendthruapp.com$
+RewriteRule (.*)$ http://www.sendthruapp.com/$1 [R=301,L]
